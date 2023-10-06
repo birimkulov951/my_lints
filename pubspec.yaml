@@ -1,4 +1,4 @@
-name: thunder_analysis
+name: my_lints
 description: This package provides Dart linter rules which are used for app development.
 
 environment:
