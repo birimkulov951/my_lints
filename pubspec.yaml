@@ -1,0 +1,9 @@
+name: thunder_analysis
+description: This package provides Dart linter rules which are used for app development.
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: '3.3.3'
+
+dev_dependencies:
+  flutter_lints: ^2.0.1
