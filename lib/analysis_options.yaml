@@ -1,8 +1,13 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
   errors:
-    todo: ignore
+    # Treated as errors (must fix)
     invalid_annotation_target: error
     invalid_use_of_protected_member: error
     always_use_package_imports: error
@@ -12,16 +17,27 @@ analyzer:
     close_sinks: error
     no_duplicate_case_values: error
     throw_in_finally: error
-    always_declare_return_types: warning
-    always_put_required_named_parameters_first: warning
     annotate_overrides: error
     avoid_catches_without_on_clauses: error
     avoid_catching_errors: error
+    only_throw_errors: error
+    recursive_getters: error
+    unrelated_type_equality_checks: error
+    avoid_dynamic_calls: error
+    avoid_slow_async_io: error
+    literal_only_boolean_expressions: error
+    test_types_in_equals: error
+    use_build_context_synchronously: error
+
+    # Treated as warnings (should fix)
+    always_declare_return_types: warning
+    always_put_required_named_parameters_first: warning
     avoid_unnecessary_containers: warning
+    avoid_print: warning
+    avoid_void_async: warning
     directives_ordering: warning
     empty_catches: warning
     empty_constructor_bodies: warning
-    only_throw_errors: error
     prefer_final_fields: warning
     prefer_final_in_for_each: warning
     prefer_final_locals: warning
@@ -34,7 +50,7 @@ analyzer:
     prefer_mixin: warning
     prefer_null_aware_method_calls: warning
     prefer_null_aware_operators: warning
-    recursive_getters: error
+    prefer_spread_collections: warning
     require_trailing_commas: warning
     sized_box_for_whitespace: warning
     sized_box_shrink_expand: warning
@@ -51,8 +67,6 @@ analyzer:
     use_super_parameters: warning
     unnecessary_this: warning
     prefer_const_constructors: warning
-    avoid_function_literals_in_foreach_calls: ignore
-    constant_identifier_names: ignore
     avoid_renaming_method_parameters: warning
     await_only_futures: warning
     prefer_adjacent_string_concatenation: warning
@@ -69,8 +83,6 @@ analyzer:
     override_on_non_overriding_member: warning
     unnecessary_brace_in_string_interps: warning
     use_function_type_syntax_for_parameters: warning
-    avoid_bool_literals_in_conditional_expressions: ignore
-    unrelated_type_equality_checks: error
     prefer_typing_uninitialized_variables: warning
     avoid_return_types_on_setters: warning
     prefer_function_declarations_over_variables: warning
@@ -85,56 +97,174 @@ analyzer:
     dead_code: warning
     unused_element: warning
     deprecated_member_use: warning
+    avoid_redundant_argument_values: warning
+    avoid_unused_constructor_parameters: warning
+    avoid_multiple_declarations_per_line: warning
+    avoid_positional_boolean_parameters: warning
+    avoid_escaping_inner_quotes: warning
+    cast_nullable_to_non_nullable: warning
+    conditional_uri_does_not_exist: warning
+    eol_at_end_of_file: warning
+    join_return_with_assignment: warning
+    leading_newlines_in_multiline_strings: warning
+    missing_whitespace_between_adjacent_strings: warning
+    no_leading_underscores_for_library_prefixes: warning
+    no_leading_underscores_for_local_identifiers: warning
+    noop_primitive_operations: warning
+    null_check_on_nullable_type_parameter: warning
+    prefer_asserts_in_initializer_lists: warning
+    unnecessary_await_in_return: warning
+    unnecessary_late: warning
+    unnecessary_null_aware_assignments: warning
+    unnecessary_null_checks: warning
+    unnecessary_overrides: warning
+    unnecessary_parenthesis: warning
+    unnecessary_raw_strings: warning
+    unnecessary_statements: warning
+    unnecessary_to_list_in_spreads: warning
+    use_full_hex_values_for_flutter_colors: warning
+    use_raw_strings: warning
+    use_string_buffers: warning
+
+    # Ignored (intentionally disabled)
+    todo: ignore
+    avoid_function_literals_in_foreach_calls: ignore
+    constant_identifier_names: ignore
+    avoid_bool_literals_in_conditional_expressions: ignore
 
   exclude:
-    - lib/**.g.dart
-    - lib/**.freezed.dart
-    - lib/**.config.dart
-    - packages/
-    
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.config.dart"
+    - "**/*.mocks.dart"
+    - "**/*.gr.dart"
+    - "**/generated/**"
+    - "test/.test_coverage.dart"
+
 linter:
   rules:
-    - avoid_catches_without_on_clauses
-    - avoid_catching_errors
-    - cancel_subscriptions
-    - close_sinks
-    - empty_catches
+    # Error prevention
     - always_use_package_imports
     - avoid_empty_else
     - avoid_relative_lib_imports
+    - avoid_slow_async_io
+    - cancel_subscriptions
+    - close_sinks
     - no_duplicate_case_values
     - throw_in_finally
+    - avoid_dynamic_calls
+    - literal_only_boolean_expressions
+    - test_types_in_equals
+    - use_build_context_synchronously
+
+    # Error handling
+    - avoid_catches_without_on_clauses
+    - avoid_catching_errors
+    - only_throw_errors
+    - unawaited_futures
+    - avoid_void_async
+
+    # Type safety
     - always_declare_return_types
+    - type_annotate_public_apis
+    - prefer_typing_uninitialized_variables
+    - cast_nullable_to_non_nullable
+    - null_check_on_nullable_type_parameter
+
+    # Code style & structure
     - always_put_required_named_parameters_first
     - annotate_overrides
     - avoid_bool_literals_in_conditional_expressions
+    - avoid_escaping_inner_quotes
+    - avoid_multiple_declarations_per_line
+    - avoid_positional_boolean_parameters
+    - avoid_redundant_argument_values
+    - avoid_renaming_method_parameters
+    - avoid_return_types_on_setters
+    - avoid_unused_constructor_parameters
     - constant_identifier_names
+    - curly_braces_in_flow_control_structures
     - directives_ordering
     - empty_constructor_bodies
-    - only_throw_errors
+    - eol_at_end_of_file
+    - file_names
+    - leading_newlines_in_multiline_strings
+    - library_prefixes
+    - missing_whitespace_between_adjacent_strings
+    - no_leading_underscores_for_library_prefixes
+    - no_leading_underscores_for_local_identifiers
+    - non_constant_identifier_names
+    - sort_child_properties_last
+    - sort_constructors_first
+    - sort_unnamed_constructors_first
+
+    # Immutability & const
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
     - prefer_final_fields
     - prefer_final_in_for_each
     - prefer_final_locals
+    - unnecessary_const
+    - unnecessary_late
+
+    # Null safety
     - prefer_if_null_operators
+    - prefer_null_aware_method_calls
+    - prefer_null_aware_operators
+    - unnecessary_null_aware_assignments
+    - unnecessary_null_checks
+    - unnecessary_null_comparison
+
+    # Prefer / use idioms
+    - prefer_adjacent_string_concatenation
+    - prefer_asserts_in_initializer_lists
+    - prefer_collection_literals
+    - prefer_function_declarations_over_variables
     - prefer_initializing_formals
     - prefer_is_empty
     - prefer_is_not_empty
     - prefer_is_not_operator
     - prefer_iterable_whereType
     - prefer_mixin
-    - prefer_null_aware_method_calls
-    - prefer_null_aware_operators
+    - prefer_spread_collections
+    - prefer_void_to_null
     - recursive_getters
-    - require_trailing_commas
-    - sized_box_shrink_expand
-    - sort_child_properties_last
-    - sort_unnamed_constructors_first
-    - type_annotate_public_apis
-    - use_colored_box
-    - use_decorated_box
     - use_enums
     - use_is_even_rather_than_modulo
     - use_named_constants
+    - use_raw_strings
+    - use_string_buffers
     - use_super_parameters
+    - use_function_type_syntax_for_parameters
+
+    # Flutter-specific
+    - avoid_unnecessary_containers
+    - sized_box_for_whitespace
+    - sized_box_shrink_expand
+    - use_colored_box
+    - use_decorated_box
+    - use_full_hex_values_for_flutter_colors
+    - use_key_in_widget_constructors
+    - avoid_print
+
+    # Unnecessary code removal
+    - unnecessary_await_in_return
+    - unnecessary_brace_in_string_interps
+    - unnecessary_import
+    - unnecessary_new
+    - unnecessary_overrides
+    - unnecessary_parenthesis
+    - unnecessary_raw_strings
+    - unnecessary_statements
+    - unnecessary_string_interpolations
     - unnecessary_this
-    - prefer_const_constructors
+    - unnecessary_to_list_in_spreads
+    - noop_primitive_operations
+
+    # Formatting
+    - require_trailing_commas
+    - await_only_futures
+    - conditional_uri_does_not_exist
+    - join_return_with_assignment
